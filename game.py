@@ -29,3 +29,9 @@ The sound of rustling leaves fills the air
 A faint path lies ahead, leading deeper into the
 unknown...
 """
+print(starting_area)
+
+# Ask the player for their first decision
+decision = input ("Do you wish to take a path (yes or no):")
+
+print(decision)
