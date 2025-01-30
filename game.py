@@ -32,6 +32,11 @@ unknown...
 print(starting_area)
 
 # Ask the player for their first decision
-decision = input ("Do you wish to take a path (yes or no):")
-
-print(decision)
+decision = input ("Do you wish to take a path (yes or no):"). lower()
+# Respond based on the player's decision
+if decision == "yes":
+    print (f"Brave choice, {player_name}!You step on the path and venture forward")  
+elif decision == "no":
+    print(f"{player_name}, you decide to wait. Perhaps courage will find you later.")
+else:
+    print("Comfused,you stand still, unsure of what to do.")
