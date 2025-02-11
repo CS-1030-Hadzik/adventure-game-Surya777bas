@@ -28,15 +28,37 @@ The sound of rustling leaves fills the air.
 A faint path lies ahead, leading deeper into the
 unknown...
 """
+#start the game loop
 print(starting_area)
 
-# Ask the player for their first decision
-decision = input("Do you wish to take the path (yes or no): ").lower()
+while True:
+    print("\nYou see two paths ahead:")
+    print("\t1. Take the left path into the dark woods.")
+    print("\t2. Take the right path towards the mountain path")
+    print("\t3. Stay where you are.")
 
-# Respond based on the player's decision
-if decision == "yes":
-    print(f"Brave choice, {player_name}! You step onto the path and venture forward.")  
-elif decision == "no":
-    print(f"{player_name}, you decide to wait. Perhaps courage will find you later.")
-else:
-    print("Confused, you stand still, unsure of what to do.")
+    decision = input("what will you do(1,2,3,): ")
+    if decision == "1":
+            print(f"{player_name},you step into the dark woodswoods.")
+            ("The tree whisper as walk deeper.")
+    
+    elif decision == "2":
+            print(f"{player_name},you make your way"
+                  "towards the mountain path,feeling "
+                "the cold wind against your face.")
+    elif decision == "3":
+           print("You stay still, listening to the "
+                "distant sounds of the forest")    
+    else:
+           print("Invalid choice.Please choose"
+                 "1 , 2, or 3")
+        
+        # Ask if they want to continue 
+    Play_again = input ("Do you want to continue "
+                            "Exploring? (yes or no): "). lower ()
+    if Play_again != "yes":
+        print(f"Thanks for playing, {player_name} "
+            "See you next time. ")
+        break # Exit the loop and end the game
+
+ 
