@@ -20,7 +20,7 @@ class Player:
 # Function to check if the player has lost (health <= 0)
 def check_lose(player):
     if player.health <= 0:
-        print(f"\nOh no, {player.name}! Your health reached 0. Game over. 💀")
+        print(f"\nOh no, {player.name}! Your health reached 0. Game over. ")
         exit()
 
 # Function to decrease health if the player stays still
