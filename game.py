@@ -8,17 +8,19 @@ This is a text-based adventure game where the player makes choices
 to navigate through a mysterious forest.
 '''
 
+import random
+
 # Player class to manage health and inventory
 class Player:
     def __init__(self, name):
         self.name = name
         self.health = 100  # Starting health
-        self.inventory = []
+        self.inventory = []  # Inventory to store items
 
 # Function to check if the player has lost (health <= 0)
 def check_lose(player):
     if player.health <= 0:
-        print(f"\n💀 Oh no, {player.name}! Your health reached 0. Game over. 💀")
+        print(f"\nOh no, {player.name}! Your health reached 0. Game over. 💀")
         exit()
 
 # Function to decrease health if the player stays still
@@ -32,13 +34,40 @@ def stay_still(player):
 def explore_dark_woods(player):
     print(f"{player.name}, you step into the dark woods.")
     print("The trees whisper as you walk deeper.")
-    stay_still(player)  # For demonstration, let's say staying still in the woods decreases health
+    # Random event: find an item or lose health
+    if random.choice([True, False]):  # 50% chance to find an item
+        item = "map"
+        if item not in player.inventory:
+            player.inventory.append(item)
+            print(f"You found a {item}! It will help you navigate the forest.")
+        else:
+            print("You already have a map.")
+    else:
+        stay_still(player)  # Decrease health if nothing happens
 
 # Function to explore the mountain pass
 def explore_mountain_pass(player):
     print(f"{player.name}, you make your way towards the mountain pass.")
     print("The cold wind brushes against your face.")
-    stay_still(player)  # For demonstration, staying still in the mountain pass decreases health
+    # Random event: find an item or lose health
+    if random.choice([True, False]):  # 50% chance to find an item
+        item = "lantern"
+        if item not in player.inventory:
+            player.inventory.append(item)
+            print(f"You found a {item}! It will light your way in dark areas.")
+        else:
+            print("You already have a lantern.")
+    else:
+        stay_still(player)  # Decrease health if nothing happens
+
+# Function to heal the player
+def use_heal_item(player):
+    if "healing potion" in player.inventory:
+        player.health += 20
+        player.inventory.remove("healing potion")
+        print("You used a healing potion and restored 20 health.")
+    else:
+        print("You don't have a healing potion in your inventory.")
 
 # Main Game Loop
 def main():
@@ -61,17 +90,20 @@ def main():
         print("\t1. Take the left path into the dark woods.")
         print("\t2. Take the right path towards the mountain pass.")
         print("\t3. Stay where you are.")
+        print("\t4. Use a healing potion (if you have one).")
 
-        decision = input("What will you do? (1, 2, 3): ").strip()
+        decision = input("What will you do? (1, 2, 3, 4): ").strip()
 
         if decision == "1":
-            explore_dark_woods(player)  # Go to the dark woods and potentially lose health
+            explore_dark_woods(player)  # Go to the dark woods
         elif decision == "2":
-            explore_mountain_pass(player)  # Go to the mountain pass and potentially lose health
+            explore_mountain_pass(player)  # Go to the mountain pass
         elif decision == "3":
-            stay_still(player)  # Stay still and lose health from boredom
+            stay_still(player)  # Stay still and lose health
+        elif decision == "4":
+            use_heal_item(player)  # Use healing item
         else:
-            print("Invalid choice. Please choose 1, 2, or 3.")
+            print("Invalid choice. Please choose 1, 2, 3, or 4.")
 
         # Ask if the player wants to continue exploring
         play_again = input("Do you want to continue exploring? (yes or no): ").lower()
